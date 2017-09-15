@@ -1,0 +1,126 @@
+.gesture-wrapper{
+  position: absolute;
+  margin: 10px;
+  .gesture-content{
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+  } 
+  .gesture-select{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .gesture-point {
+      z-index: 5;
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background: green;
+    }
+    .gesture-line {
+      z-index: 4;
+      position: absolute;
+    }
+   .gesture-point-top-left{
+     top: -5px;
+     left: -5px;
+     cursor: nwse-resize;
+   } 
+   .gesture-point-top-middle{
+     top: -5px;
+     left: 50%;
+     cursor: ns-resize;
+   }
+   .gesture-point-top-right{
+     top: -5px;
+     right: -5px;
+     cursor: nesw-resize;
+   }
+   .gesture-point-bottom-left{
+     bottom: -5px;
+     left: -5px;
+     cursor: nesw-resize;
+   }
+   .gesture-point-bottom-middle{
+     bottom: -5px;
+     left: 50%;
+     cursor: ns-resize;
+   }
+   .gesture-point-bottom-right{
+     bottom: -5px;
+     right: -5px;
+     cursor: nwse-resize;
+   }
+   .gesture-point-left-middle{
+     top: 50%;
+     left: -5px;
+     cursor: ew-resize;
+   }
+   .gesture-point-right-middle{
+     top: 50%;
+     right: -5px;
+     cursor: ew-resize;
+   }
+   .gesture-line-top{
+     top: -1px;
+     height: 1px;
+     width: 100%;
+     padding: 2px 0;
+     border-top: 1px solid aqua;
+     cursor: ns-resize;
+   }
+   .gesture-line-left{
+     left: -1px;
+     height: 100%;
+     width: 1px;
+     padding: 2px 0;
+     border-left: 1px solid aqua;
+     cursor: ew-resize;
+   }
+   .gesture-line-bottom{
+     bottom: -1px;
+     height: 1px;
+     width: 100%;
+     padding: 2px 0;
+     border-bottom: 1px solid aqua;
+     cursor: ns-resize;
+   }
+   .gesture-line-right{
+     right: -1px;
+     height: 100%;
+     width: 1px;
+     padding: 2px 0;
+     border-right: 1px solid aqua;
+     cursor: ew-resize;
+   }
+   .gesture-line-rotate{
+     height: 20px;
+     width: 1px;
+     background: aqua;
+     margin-left: 5px;
+     top: -20px;
+     left: 50%;
+   }
+   .gesture-point-rotate{
+     top: -20px;
+     left: 50%;
+     background: #cecece;
+   }
+  }
+  &.active{
+    .gesture-select {
+      display: block;
+      z-index: 3;
+      background: rgba(23,144, 144, 0.8);
+    }
+  }
+  &.editable{
+    .gesture-select{
+      z-index: -1;
+    }
+  }
+}
