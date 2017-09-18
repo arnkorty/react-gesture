@@ -108,6 +108,7 @@ class Gesture extends Component {
     let point = this.getCenterPoint();
     let y = point.y - e.clientY;
     let x = e.clientX - point.x;
+
     let deg = Math.atan( Math.abs(x) / Math.abs(y)) * 180 / 3.141592653589793;
     if ( y <= 0 && x >= 0) {
       deg = 180 - deg;
@@ -122,8 +123,8 @@ class Gesture extends Component {
   getCenterPoint () {
     let point = this.refs.wrapper.getBoundingClientRect();
     return {
-      x: point.left + this.originPosition.css.width / 2,
-      y: point.top + this.originPosition.css.height / 2
+      y: (point.bottom - point.top) /2 + point.top,
+      x: (point.right - point.left) /2 + point.left
     }
   }
 
