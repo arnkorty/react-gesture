@@ -17,15 +17,15 @@ class Gesture extends Component {
   componentDidMount () {
     document.addEventListener('click', (e) => {
       console.log('click')
-      if (e.path && e.path.indexOf(this.refs.wrapper) === -1) {
-        this.refs.wrapper.classList.remove('active');
-        this.refs.wrapper.classList.remove('editable');
-      } else if(!this.isChild(e.target, this.refs.wrapper)) {
-        this.refs.wrapper.classList.remove('active');
-        this.refs.wrapper.classList.remove('editable');
+      if (e.path && e.path.indexOf(this.wrapper) === -1) {
+        this.wrapper.classList.remove('active');
+        this.wrapper.classList.remove('editable');
+      } else if(!this.isChild(e.target, this.wrapper)) {
+        this.wrapper.classList.remove('active');
+        this.wrapper.classList.remove('editable');
       } else {
-        this.refs.wrapper.classList.add('active');
-        this.refs.wrapper.classList.remove('editable');
+        this.wrapper.classList.add('active');
+        this.wrapper.classList.remove('editable');
       }
     });
     document.addEventListener('mouseup', (e) =>{
@@ -42,7 +42,7 @@ class Gesture extends Component {
       if (this.canMove(e)) {
         let x = e.clientX - this.originPosition.e.x;
         let y = e.clientY - this.originPosition.e.y;
-        if (this.originPosition.e.target === this.refs.selectGesture) {
+        if (this.originPosition.e.target === this.selectGesture) {
           this.setState({cssWrapper: {
             ...this.state.cssWrapper,
             left: this.getPx(this.originPosition.css.left, x),
@@ -121,7 +121,7 @@ class Gesture extends Component {
   }
 
   getCenterPoint () {
-    let point = this.refs.wrapper.getBoundingClientRect();
+    let point = this.wrapper.getBoundingClientRect();
     return {
       y: (point.bottom - point.top) /2 + point.top,
       x: (point.right - point.left) /2 + point.left
@@ -180,11 +180,11 @@ class Gesture extends Component {
 
   render() {
     return (
-      <div ref='wrapper' className='gesture-wrapper' style={ this.state.cssWrapper }>
+      <div ref={(wrapper) => this.wrapper = wrapper } className='gesture-wrapper' style={ this.state.cssWrapper }>
         <div className="gesture-content">
           {this.props.children}
         </div>
-        <div className='gesture-select' ref='selectGesture' onDoubleClick={() => this.refs.wrapper.classList.add('editable')} onMouseDown={this.handleMouseDown}>
+        <div className='gesture-select' ref={(selectGesture) => this.selectGesture = selectGesture } onDoubleClick={() => this.wrapper.classList.add('editable')} onMouseDown={this.handleMouseDown}>
           <div className='gesture-point gesture-point-top-left' onMouseDown={this.handleMouseDown}></div>
           <div className='gesture-point gesture-point-top-right' onMouseDown={this.handleMouseDown}></div>
           <div className='gesture-point gesture-point-bottom-left' onMouseDown={this.handleMouseDown}></div>
